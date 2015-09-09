@@ -124,6 +124,7 @@
         j.sendmsg(Xout);
         j.sendmsg(Yout);  
         j.sendmsg(Zout);  
+    delay(100);
    }
   
    void answer(String ask) {
