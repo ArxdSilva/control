@@ -64,7 +64,6 @@
   void loop() 
   {
     if (j.availablemsg()){answer(j.getmsg());}
-     
     
    //1.3-Main loop function to the module
    //--------------X
@@ -107,7 +106,6 @@
     Xg=X_out/256.0;
     Yg=Y_out/256.0;
     Zg=Z_out/256.0;
-  
   
     Serial.print("X= ");
     Serial.print(Xg);
