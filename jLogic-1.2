@@ -31,6 +31,7 @@ public class Main extends Environment {
 			//cria p cpmtrpçadpr de GPIO
 			final GpioController gpio = GpioFactory.getInstance();
 			//seta o pino #1 como pino de saida e o liga
+			//liga o LED para avisar que o programa foi iniciado
 			final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.HIGH);			
 			
 			//para enviar com. p/ o Arduino o metodo mais facil é por sendmsg?
