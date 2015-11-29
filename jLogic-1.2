@@ -33,7 +33,7 @@ public class Main extends Environment {
 			//liga o LED para avisar que o programa foi iniciado
 			final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.HIGH);			
 			
-			//para enviar com. p/ o Arduino o metodo mais facil é por sendmsg?
+			//para enviar com. p/ o Arduino o metodo mais facil é por sendmsg
 			this.jBridge.sendmsg("status");
 			j.requestData(port, comun);
 		
@@ -47,6 +47,7 @@ public class Main extends Environment {
 				if (action.toString().equals("goAhead")) {
 					this.jBridge.percept = "goAhead"; 
 			        this.jBridge.sendmsg("goAhead");
+                               this.goAhead;
 				}
 				
 				if (action.toString().equals("goBack")) {
@@ -70,4 +71,7 @@ public class Main extends Environment {
 	public void stop() {
 		j.sendCommand(port, "Stop");
 	}
+        public void goAhead() {
+               j.sendCommand(port, "goAhead");
+}
 }
