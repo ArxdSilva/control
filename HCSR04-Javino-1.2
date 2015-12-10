@@ -46,21 +46,7 @@ void setup()
 void loop()
 {
   if (j.availablemsg()){answer(j.getmsg());}
-  
-  //Le as informacoes do sensor em cm
-  double Xg;
-  String Xout;
-  float cmMsec;
-  long microsec = ultrasonic.timing();
-  cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
-  //Exibe informacoes no serial monitor
-  Serial.print("Distancia em cm: ");
-  Serial.println(cmMsec);
-  delay(100);
-    Xg=double(cmMsec);
-    Xout=String(Xg);
-    //adicionado caso a void Distance nao funcione, assim o flow de informacao é "continuo" para o Java
-    j.sendmsg(Xout);
+ 
 }
 
 void answer(String ask) {
@@ -71,19 +57,28 @@ void answer(String ask) {
                else if (ask == "turnLeft"){turnLeft();}
                else if (ask == "turnRight"){turnRight();}
                else if (ask == "status") {Distance();}
-               else (ask == "Stop");{Stop();}
-      }
-    
-     //1.4-Sends to the Java program the coordinates of X,Y,Z
-    //according to the accelerometer
-
+               else (ask == "Stop") {Stop();}
+}
 
 //Envia a distancia do objeto mais proximo a Raspberry
     void Distance() {
-      String Xout;
-      float cmMsec;
+
+//Le as informacoes do sensor em cm
+  double Xg;
+  String Xout;
+  float cmMsec;
+  long microsec = ultrasonic.timing();
+  cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
+
+  //Exibe informacoes no serial monitor
+  Serial.print("Distancia em cm: ");
+  Serial.println(cmMsec);
+  delay(100);
+    Xg=double(cmMsec);
+    Xout=String(Xg);
+
        j.sendmsg(Xout);
-        Serial.println("Enviado: ");
+        Serial.println("Enviado: ", Xout);
         Serial.println(cmMsec);
     }
    
@@ -100,6 +95,8 @@ void answer(String ask) {
    //Gira o Motor D 
    digitalWrite(IN7, LOW);
    digitalWrite(IN8, HIGH);
+
+   delay(500);
      }
     
     void goBack() {
@@ -115,6 +112,8 @@ void answer(String ask) {
    //Gira o Motor D 
    digitalWrite(IN7, HIGH);
    digitalWrite(IN8, LOW);
+
+   delay(500);
      }
     
       void turnLeft() {
@@ -130,6 +129,8 @@ void answer(String ask) {
    //Gira o Motor D 
    digitalWrite(IN7, LOW);
    digitalWrite(IN8, HIGH);
+
+   delay(500);
      }
      
      void turnRight() {
@@ -145,6 +146,8 @@ void answer(String ask) {
    //Gira o Motor D 
    digitalWrite(IN7, HIGH);
    digitalWrite(IN8, LOW);
+
+   delay(500);
      }
      
    void Stop() {
@@ -160,5 +163,6 @@ void answer(String ask) {
    //Gira o Motor D 
    digitalWrite(IN7, LOW);
    digitalWrite(IN8, LOW);
-     
+
+   delay(500);
   }
