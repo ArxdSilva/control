@@ -46,8 +46,7 @@ public class Main extends Environment {
 								
 				if (action.toString().equals("goAhead")) {
 					this.jBridge.percept = "goAhead"; 
-			        this.jBridge.sendmsg("goAhead");
-                               this.goAhead;
+			        	this.jBridge.sendmsg("goAhead");
 				}
 				
 				if (action.toString().equals("goBack")) {
@@ -57,21 +56,12 @@ public class Main extends Environment {
 				
 				if (action.toString().equals("stop")) {
 					this.jBridge.percept = "stop";
-					this.stop;
+					this.jBridge.sendmsg("stop");
 					}
 				if (action.toString().equals("refresh")) {
 					this.jBridge.percept = "refresh";
-					this.Refresh;
+					this.jBridge.sendmsg("Refresh");
 					}
-		}
-	public void Refresh {
-		clearPercepts();
+				
 	}
-	
-	public void stop() {
-		j.sendCommand(port, "Stop");
-	}
-        public void goAhead() {
-               j.sendCommand(port, "goAhead");
-}
 }
